@@ -1,0 +1,82 @@
+<certe_dump>
+  <instance type=" my_test "> 
+     uvm_test_top 
+  
+     <instance type=" env "> 
+        my_env 
+  
+        <instance type=" agent "> 
+           my_agent 
+  
+           <port if_type = "uvm_analysis_port" txn_type = "anonymous"> 
+              my_analysis_port 
+              <connection>  uvm_test_top.my_env.my_sb.my_analysis_import  </connection> 
+              <connection>  uvm_test_top.my_env.my_sub.my_analysis_import  </connection> 
+           </port> 
+  
+           <instance type=" driver "> 
+              my_driver 
+  
+              <port if_type = "uvm_analysis_port" txn_type = "anonymous"> 
+                 rsp_port 
+              </port> 
+  
+              <port if_type = "uvm_seq_item_pull_port" txn_type = "anonymous"> 
+                 seq_item_port 
+                 <connection>  uvm_test_top.my_env.my_agent.my_sequencer.seq_item_export  </connection> 
+              </port> 
+           </instance> 
+  
+  
+           <instance type=" Monitor "> 
+              my_mon 
+  
+              <port if_type = "uvm_analysis_port" txn_type = "anonymous"> 
+                 my_analysis_port 
+                 <connection>  uvm_test_top.my_env.my_agent.my_analysis_port  </connection> 
+              </port> 
+           </instance> 
+  
+  
+           <instance type=" sequencer "> 
+              my_sequencer 
+  
+              <export if_type = "uvm_analysis_export" txn_type = "anonymous"> 
+                 rsp_export 
+                 <connection>  uvm_test_top.my_env.my_agent.my_sequencer.sqr_rsp_analysis_fifo.analysis_export  </connection> 
+              </export> 
+  
+              <imp if_type = "uvm_seq_item_pull_imp" txn_type = "anonymous"> 
+                 seq_item_export 
+              </imp> 
+           </instance> 
+  
+        </instance> 
+  
+  
+        <instance type=" scoreboard "> 
+           my_sb 
+  
+           <imp if_type = "uvm_analysis_imp" txn_type = "anonymous"> 
+              my_analysis_import 
+           </imp> 
+        </instance> 
+  
+  
+        <instance type=" subscriber "> 
+           my_sub 
+  
+           <imp if_type = "uvm_analysis_imp" txn_type = "anonymous"> 
+              analysis_imp 
+           </imp> 
+  
+           <imp if_type = "uvm_analysis_imp" txn_type = "anonymous"> 
+              my_analysis_import 
+           </imp> 
+        </instance> 
+  
+     </instance> 
+  
+  </instance> 
+  
+  </certe_dump>
